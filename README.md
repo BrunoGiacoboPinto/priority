@@ -16,16 +16,16 @@ As figuras abaixo ilustram o comportamento **atual** do aplicativo:
 <tbody>
   <tr>
     <td class="tg-0pky">
-        <img src="img/home.png" width="280" height="480"/>
+        <img src="img/home.png" width="280" />
     </td>
     <td class="tg-0pky">
-        <img src="img/error.png" width="280" height="480"/>
+        <img src="img/error.png" width="280" />
     </td>
     <td class="tg-0pky">
-        <img src="img/warning.png" width="280" height="480"/>
+        <img src="img/warning.png" width="280" />
     </td>
     <td class="tg-0pky">
-        <img src="img/info.png" width="280" height="480"/>
+        <img src="img/info.png" width="280" />
     </td>
   </tr>
 </tbody>
