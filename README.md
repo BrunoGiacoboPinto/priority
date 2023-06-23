@@ -62,6 +62,4 @@ animation = Tween<double>(begin: -alertHeight, end: 0.0).animate(
 
 ## Como você deve fazer a entrega
 
-Para a realização do desafio, você deve fazer um fork desse repositório, alterar somente o necessário para solucionar os problemas e abrir um **pull request** para o branch `main`. O título desse **pull request** deve ser o seu nome completo.
-
-O Código completo da aplicação será disponibilizado somente na data e hora combinados. O **pull request** deverá ser aberto até a hora limite combinada.
+Responda o e-mail de acesso ao link da prova com o código em arquivo zip.
