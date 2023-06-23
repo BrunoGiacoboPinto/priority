@@ -1,147 +1,152 @@
-// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'alert_messenger.dart';
 
-class MyApp extends StatelessWidget {
+void main() => runApp(const AlertPriorityApp());
+
+class AlertPriorityApp extends StatelessWidget {
+  const AlertPriorityApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
+      title: 'Priority',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  final String title;
-
-  const MyHomePage({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final minWidth = width / 3;
-
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          bottom: TabBar(
-            isScrollable: true,
-            tabs: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Gráfico'),
-                ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Books'),
-                ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-                            ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: minWidth,
-                ),
-                child: const Center(
-                  child: Text('Times & Trades'),
-                ),
-              ),
-            ],
+        iconTheme: const IconThemeData(size: 16.0, color: Colors.white),
+        elevatedButtonTheme: const ElevatedButtonThemeData(
+          style: ButtonStyle(
+            minimumSize: MaterialStatePropertyAll(Size(110, 40)),
           ),
         ),
-        body:  const TabBarView(
-          children: [
-            ColoredBox(color: Colors.amber),
-            ColoredBox(color: Colors.purple),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-            ColoredBox(color: Colors.blueAccent),
-          ],
+      ),
+      home: AlertMessenger(
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              backgroundColor: Colors.grey[200],
+              appBar: AppBar(
+                title: const Text('Alerts'),
+                centerTitle: true,
+              ),
+              body: SafeArea(
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Center(
+                        child: Text(
+                          '<Adicione o texto do alerta de prioridade aqui>',
+                          style: TextStyle(
+                            color: Colors.grey[500],
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    AlertMessenger.of(context).showAlert(
+                                      alert: const Alert(
+                                        backgroundColor: Colors.red,
+                                        leading: Icon(Icons.error),
+                                        priority: AlertPriority.error,
+                                        child: Text('Oops, ocorreu um erro. Pedimos desculpas.'),
+                                      ),
+                                    );
+                                  },
+                                  style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(Colors.red),
+                                  ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Icon(Icons.error),
+                                      SizedBox(width: 4.0),
+                                      Text('Error'),
+                                    ],
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    AlertMessenger.of(context).showAlert(
+                                      alert: const Alert(
+                                        backgroundColor: Colors.amber,
+                                        leading: Icon(Icons.warning),
+                                        priority: AlertPriority.warning,
+                                        child: Text('Atenção! Você foi avisado.'),
+                                      ),
+                                    );
+                                  },
+                                  style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(Colors.amber),
+                                  ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Icon(Icons.warning_outlined),
+                                      SizedBox(width: 4.0),
+                                      Text('Warning'),
+                                    ],
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    AlertMessenger.of(context).showAlert(
+                                      alert: const Alert(
+                                        backgroundColor: Colors.green,
+                                        leading: Icon(Icons.info),
+                                        priority: AlertPriority.info,
+                                        child: Text('Este é um aplicativo escrito em Flutter.'),
+                                      ),
+                                    );
+                                  },
+                                  style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(Colors.lightGreen),
+                                  ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Icon(Icons.info_outline),
+                                      SizedBox(width: 4.0),
+                                      Text('Info'),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 24.0,
+                                vertical: 16.0,
+                              ),
+                              child: ElevatedButton(
+                                onPressed: AlertMessenger.of(context).hideAlert,
+                                child: const Text('Hide alert'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
