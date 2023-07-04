@@ -62,4 +62,4 @@ animation = Tween<double>(begin: -alertHeight, end: 0.0).animate(
 
 ## Como você deve fazer a entrega
 
-Responda o e-mail de acesso ao link da prova com o código em arquivo zip.
+Responda o e-mail de acesso ao link da prova com um arquivo zipado (tem que ser .zip) contendo somente os arquivos `lib/main.dart` e `lib/alert_messenger.dart`.
